@@ -5,7 +5,6 @@ using System.Collections;
 public class DialogueController : MonoBehaviour
 {
     public static DialogueController instance;
-    [SerializeField] private GameObject dialogueMark;
     [SerializeField] private GameObject dialogueCanvas;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField, TextArea(3, 6)] private string[] dialogueLines;
@@ -14,52 +13,27 @@ public class DialogueController : MonoBehaviour
     public bool isDialogueActive;
     public int lineIndex;
 
-    private float typingTime = 0.05f;
+    private float typingTime = 0.06f;
     private bool isTyping;
 
     private void Start()
     {
         instance = this;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            PlayerInteract playerInteract = other.GetComponent<PlayerInteract>();
-            playerInteract.dialogueController = this;
-
-            isPlayerInRange = true;
-            dialogueMark.SetActive(true);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            isPlayerInRange = false;
-            dialogueMark.SetActive(false);
-        }
+        StartDialogue();
     }
 
     public void StartDialogue()
     {
-        if (!isDialogueActive)
-        {
-            //PlayerInfo.Instance.FreezeMovement();
-            isDialogueActive = true;
-            dialogueCanvas.SetActive(true);
-            dialogueMark.SetActive(false);
-            lineIndex = 0;
-            StartCoroutine(ShowLine());
-        }
+        isDialogueActive = true;
+        dialogueCanvas.SetActive(true);
+        lineIndex = 0;
+        StartCoroutine(ShowLine());
     }
 
     private IEnumerator ShowLine()
     {
         isTyping = true;
-        typingTime = 0.05f;
+        typingTime = 0.06f;
 
         dialogueText.text = string.Empty;
 
@@ -69,9 +43,14 @@ public class DialogueController : MonoBehaviour
             yield return new WaitForSeconds(typingTime);
         }
         isTyping = false;
+        yield return new WaitForSeconds(3);
+        dialogueCanvas.SetActive(false);
+        isDialogueActive = false;
+        lineIndex = 0;
+        typingTime = 0.06f;
     }
 
-    public void NextText()
+    /*public void NextText()
     {
         if (isTyping)
         {
@@ -89,11 +68,9 @@ public class DialogueController : MonoBehaviour
                 dialogueCanvas.SetActive(false);
                 isDialogueActive = false;
                 lineIndex = 0;
-                typingTime = 0.05f;
-                dialogueMark.SetActive(true);
+                typingTime = 0.06f;
                 isDialogueActive = false;
-                //PlayerInfo.Instance.UnfreezeMovement();
             }
         }
-    }
+    }*/
 }
