@@ -13,9 +13,11 @@ GameObject:
   - component: {fileID: 2300000}
   - component: {fileID: 9500000}
   - component: {fileID: 4467412557269220009}
-  m_Layer: 0
+  - component: {fileID: 2826920758371469916}
+  - component: {fileID: 7388118266567927949}
+  m_Layer: 7
   m_Name: "\u0421eltic \u0441ross"
-  m_TagString: Untagged
+  m_TagString: Stone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,3 +134,43 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 0ecf2dee7cc3b90418d846f1e9a5512d, type: 3}
+--- !u!114 &2826920758371469916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c9401762f9e1164b809a2c588c47795, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueMark: {fileID: 0}
+  dialogueCanvas: {fileID: 0}
+  dialogueText: {fileID: 0}
+  dialogueLines: []
+  isPlayerInRange: 0
+  isDialogueActive: 0
+  lineIndex: 0
+--- !u!135 &7388118266567927949
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 213.00188
+  m_Center: {x: 0, y: 0.0000038146977, z: 0}
