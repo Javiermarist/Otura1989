@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - cross
+  - NPC
   layers:
   - Default
   - TransparentFX

@@ -7,10 +7,10 @@ public class EffectorTrigger : MonoBehaviour
     public GameObject[] objectsToDeactivate;
     public GameObject[] objectsToActivate; 
     public float activeDuration = 5f;
-    public float delayBeforeDeactivating = 2f; // Tiempo de espera antes de desactivar los objetos
+    public float delayBeforeDeactivating = 1f;
 
-    public GameObject player; // Variable para almacenar la referencia al jugador
-    private CharController_Motor playerMovement; // Referencia al script de movimiento del jugador (ajustar según tu código)
+    public GameObject player;
+    private CharController_Motor playerMovement;
 
     private void OnTriggerEnter(Collider other)
     {

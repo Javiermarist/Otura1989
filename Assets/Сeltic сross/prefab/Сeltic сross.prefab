@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4467412557269220009}
   m_Layer: 0
   m_Name: "\u0421eltic \u0441ross"
-  m_TagString: Untagged
+  m_TagString: cross
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
