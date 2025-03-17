@@ -14,6 +14,8 @@ public class SphereCollision : MonoBehaviour
         {
             Destroy(collision.gameObject);
             Instantiate(brokenCross, collision.transform.position, Quaternion.identity);
+            GameController gameController = GameObject.Find("GameController").GetComponent<GameController>();
+            gameController.destroyedCrosses++;
         }
     }
 }
