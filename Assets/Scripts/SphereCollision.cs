@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class SphereCollision : MonoBehaviour
 {
+    public GameObject gameController;
     public GameObject brokenCross;
+
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -14,8 +16,7 @@ public class SphereCollision : MonoBehaviour
         {
             Destroy(collision.gameObject);
             Instantiate(brokenCross, collision.transform.position, Quaternion.identity);
-            GameController gameController = GameObject.Find("GameController").GetComponent<GameController>();
-            gameController.destroyedCrosses++;
+            gameController.GetComponent<GameController>().destroyedCrosses++;
         }
     }
 }
