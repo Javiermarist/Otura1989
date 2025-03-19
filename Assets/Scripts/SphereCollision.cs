@@ -11,6 +11,7 @@ public class SphereCollision : MonoBehaviour
         if (collision.gameObject.CompareTag("NPC"))
         {
             Destroy(collision.gameObject);
+            gameController.GetComponent<GameController>().deadNpcs++;
         }
         if (collision.gameObject.CompareTag("cross"))
         {
