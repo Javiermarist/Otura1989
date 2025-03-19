@@ -8,8 +8,7 @@ public class DialogueController : MonoBehaviour
     [SerializeField] private GameObject dialogueCanvas;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField, TextArea(3, 6)] private string[] dialogueLines;
-
-    public bool isPlayerInRange;
+    
     public bool isDialogueActive;
     public int lineIndex;
 
@@ -19,7 +18,6 @@ public class DialogueController : MonoBehaviour
     private void Start()
     {
         instance = this;
-        StartDialogue();
     }
 
     public void StartDialogue()
@@ -42,6 +40,7 @@ public class DialogueController : MonoBehaviour
             dialogueText.text += ch;
             yield return new WaitForSeconds(typingTime);
         }
+        
         isTyping = false;
         yield return new WaitForSeconds(3);
         dialogueCanvas.SetActive(false);
@@ -49,28 +48,4 @@ public class DialogueController : MonoBehaviour
         lineIndex = 0;
         typingTime = 0.06f;
     }
-
-    /*public void NextText()
-    {
-        if (isTyping)
-        {
-            typingTime = 0;
-        }
-        else
-        {
-            lineIndex++;
-            if (lineIndex < dialogueLines.Length)
-            {
-                StartCoroutine(ShowLine());
-            }
-            else
-            {
-                dialogueCanvas.SetActive(false);
-                isDialogueActive = false;
-                lineIndex = 0;
-                typingTime = 0.06f;
-                isDialogueActive = false;
-            }
-        }
-    }*/
 }
