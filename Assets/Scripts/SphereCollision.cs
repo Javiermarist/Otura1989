@@ -4,6 +4,7 @@ public class SphereCollision : MonoBehaviour
 {
     public GameObject gameController;
     public GameObject brokenCross;
+    public GameObject deadSwag;
     public DialogueController dialogueController;
 
     private void OnCollisionEnter(Collision collision)
@@ -11,6 +12,7 @@ public class SphereCollision : MonoBehaviour
         if (collision.gameObject.CompareTag("NPC"))
         {
             Destroy(collision.gameObject);
+            Instantiate(deadSwag, collision.transform.position, Quaternion.identity);
             gameController.GetComponent<GameController>().deadNpcs++;
         }
 
