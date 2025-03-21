@@ -23,47 +23,46 @@ public class EffectorTrigger : MonoBehaviour
     }
 
     private IEnumerator ActivateEffector()
-{
-    effector.Play();
-    
-    // Activar los objetos
-    foreach (GameObject obj in objectsToActivate)
     {
-        obj.SetActive(true);
+        effector.Play();
+        
+        foreach (GameObject obj in objectsToActivate)
+        {
+            obj.SetActive(true);
+        }
+
+        CharacterController characterController = player.GetComponent<CharacterController>();
+        if (characterController != null)
+        {
+            characterController.enabled = false;
+        }
+
+        if (playerMovement != null)
+        {
+            playerMovement.enabled = false;
+        }
+
+        yield return new WaitForSeconds(delayBeforeDeactivating);
+
+        foreach (GameObject obj in objectsToDeactivate)
+        {
+            obj.SetActive(false);
+        }
+
+        yield return new WaitForSeconds(activeDuration - delayBeforeDeactivating);
+
+        effector.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+
+        if (characterController != null)
+        {
+            characterController.enabled = true;
+        }
+
+        if (playerMovement != null)
+        {
+            playerMovement.enabled = true;
+        }
+
+        gameObject.SetActive(false);
     }
-
-    CharacterController characterController = player.GetComponent<CharacterController>();
-    if (characterController != null)
-    {
-        characterController.enabled = false;
-    }
-
-    if (playerMovement != null)
-    {
-        playerMovement.enabled = false;
-    }
-
-    yield return new WaitForSeconds(delayBeforeDeactivating);
-
-    foreach (GameObject obj in objectsToDeactivate)
-    {
-        obj.SetActive(false);
-    }
-
-    yield return new WaitForSeconds(activeDuration - delayBeforeDeactivating);
-
-    effector.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-
-    if (characterController != null)
-    {
-        characterController.enabled = true;
-    }
-
-    if (playerMovement != null)
-    {
-        playerMovement.enabled = true;
-    }
-
-    gameObject.SetActive(false);
-}
 }
