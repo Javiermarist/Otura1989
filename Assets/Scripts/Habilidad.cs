@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Habilidad : MonoBehaviour
+public class Habilidad1 : MonoBehaviour
 {
     public KeyCode habilidadTecla = KeyCode.E;
-    public GameObject circuloUI;
+    public GameObject circuloUI, dibujoUI;
     public float rangoVisibilidad = 30f;
     public float distanciaMaxima = 10f;
     public List<GameObject> objetivos = new List<GameObject>();
     public Camera cam;
+    public Sprite imagenCruz, imagenPersona, imagenRitual;
+    public Image habilidadImagen;
 
     void Start()
     {
@@ -29,15 +32,18 @@ public class Habilidad : MonoBehaviour
             if (DetectarObjetivo())
             {
                 circuloUI.SetActive(true);
+                dibujoUI.SetActive(true);
             }
             else
             {
                 circuloUI.SetActive(false);
+                dibujoUI.SetActive(false);
             }
         }
         else
         {
             circuloUI.SetActive(false);
+            dibujoUI.SetActive(false);
         }
     }
 
@@ -55,9 +61,9 @@ public class Habilidad : MonoBehaviour
                 {
                     Vector3 direccionObjetivo = objetivo.transform.position - cam.transform.position;
                     float angulo = Vector3.Angle(direccionCamara, direccionObjetivo);
-
                     if (angulo < rangoVisibilidad)
                     {
+                        MostrarDibujo(objetivo);
                         return true;
                     }
                 }
@@ -65,5 +71,21 @@ public class Habilidad : MonoBehaviour
         }
 
         return false;
+    }
+
+    void MostrarDibujo(GameObject objetivo)
+    {
+        if (objetivo.tag == "NPC")
+        {
+            habilidadImagen.sprite = imagenPersona;
+        }
+        else if (objetivo.tag == "cross")
+        {
+            habilidadImagen.sprite = imagenCruz;
+        }
+        else if(objetivo.tag == "Ritual")
+        {
+            habilidadImagen.sprite = imagenRitual;
+        }
     }
 }
