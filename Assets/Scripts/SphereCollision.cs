@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SphereCollision : MonoBehaviour
@@ -43,20 +44,18 @@ public class SphereCollision : MonoBehaviour
 
         if (collision.gameObject.CompareTag("cross"))
         {
-            Destroy(collision.gameObject);
-            Instantiate(brokenCross, collision.transform.position, Quaternion.identity);
-            
-            gameController.GetComponent<GameController>().destroyedCrosses++;
-            
             if (gameController.GetComponent<GameController>().destroyedCrosses < 3)
             {
-                dialogueController.StartDialogue();
+                dialogueController.StartDialogue0();
             }
-            else
+            if (gameController.GetComponent<GameController>().destroyedCrosses == 3)
             {
-                dialogueController.lineIndex ++;
-                dialogueController.StartDialogue();
+                dialogueController.StartDialogue1();
             }
+            
+            Destroy(collision.gameObject);
+            Instantiate(brokenCross, collision.transform.position, Quaternion.identity);
+            gameController.GetComponent<GameController>().destroyedCrosses++;
         }
     }
 }

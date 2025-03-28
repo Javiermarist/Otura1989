@@ -20,11 +20,27 @@ public class DialogueController : MonoBehaviour
         instance = this;
     }
 
-    public void StartDialogue()
+    public void StartDialogue0()
     {
         isDialogueActive = true;
         dialogueCanvas.SetActive(true);
         lineIndex = 0;
+        StartCoroutine(ShowLine());
+    }
+    
+    public void StartDialogue1()
+    {
+        isDialogueActive = true;
+        dialogueCanvas.SetActive(true);
+        lineIndex = 1;
+        StartCoroutine(ShowLine());
+    }
+    
+    public void StartDialogue2()
+    {
+        isDialogueActive = true;
+        dialogueCanvas.SetActive(true);
+        lineIndex = 2;
         StartCoroutine(ShowLine());
     }
 
