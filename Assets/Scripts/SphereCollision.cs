@@ -5,23 +5,30 @@ using UnityEngine.SceneManagement;
 
 public class SphereCollision : MonoBehaviour
 {
+    [Header("Game Objects")]
     public GameObject gameController;
+    public GameObject demon2;
+    public GameObject blood;
     public GameObject brokenCross;
     public GameObject deadSwag;
     public GameObject deadBuenorra;
     public GameObject deadMegan;
     public GameObject deadCalvo;
-    public GameObject demon2;
-    public GameObject blood;
-    public ParticleSystem effector;
     public DialogueController dialogueController;
+    
+    [Header("Particle Systems")]
+    public ParticleSystem effector;
     public Canvas ending;
+    
+    [Header("Audio Sources")]
+    public AudioSource scream1;
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Swag"))
         {
             Destroy(collision.gameObject);
+            //scream1.Play();
             Instantiate(blood, collision.transform.position, Quaternion.identity);
             Instantiate(deadSwag, collision.transform.position, Quaternion.identity);
             gameController.GetComponent<GameController>().deadNpcs++;
@@ -30,6 +37,7 @@ public class SphereCollision : MonoBehaviour
         if (collision.gameObject.CompareTag("Buenorra"))
         {
             Destroy(collision.gameObject);
+            //scream1.Play();
             Instantiate(blood, collision.transform.position, Quaternion.identity);
             Instantiate(deadBuenorra, collision.transform.position, Quaternion.identity);
             gameController.GetComponent<GameController>().deadNpcs++;
@@ -38,6 +46,7 @@ public class SphereCollision : MonoBehaviour
         if (collision.gameObject.CompareTag("Calvo"))
         {
             Destroy(collision.gameObject);
+            //scream1.Play();
             Instantiate(blood, collision.transform.position, Quaternion.identity);
             Instantiate(deadCalvo, collision.transform.position, Quaternion.identity);
             gameController.GetComponent<GameController>().deadNpcs++;
@@ -46,6 +55,7 @@ public class SphereCollision : MonoBehaviour
         if (collision.gameObject.CompareTag("Megan"))
         {
             Destroy(collision.gameObject);
+            //scream1.Play();
             Instantiate(blood, collision.transform.position, Quaternion.identity);
             Instantiate(deadMegan, collision.transform.position, Quaternion.identity);
             gameController.GetComponent<GameController>().deadNpcs++;
