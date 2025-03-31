@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Habilidad1 : MonoBehaviour
+public class Habilidad : MonoBehaviour
 {
-    public KeyCode habilidadTecla = KeyCode.E;
+    public KeyCode habilidadTecla = KeyCode.Tab;
     public GameObject circuloUI, dibujoUI;
     public float rangoVisibilidad = 30f;
     public float distanciaMaxima = 10f;
     public List<GameObject> objetivos = new List<GameObject>();
     public Camera cam;
-    public Sprite imagenCruz, imagenPersona, imagenRitual;
-    public Image habilidadImagen;
 
     void Start()
     {
@@ -26,24 +24,20 @@ public class Habilidad1 : MonoBehaviour
 
     void Update()
     {
-        // Verificar si la tecla de habilidad está presionada
         if (Input.GetKey(habilidadTecla))
         {
             if (DetectarObjetivo())
             {
                 circuloUI.SetActive(true);
-                dibujoUI.SetActive(true);
             }
             else
             {
                 circuloUI.SetActive(false);
-                dibujoUI.SetActive(false);
             }
         }
         else
         {
             circuloUI.SetActive(false);
-            dibujoUI.SetActive(false);
         }
     }
 
@@ -51,10 +45,9 @@ public class Habilidad1 : MonoBehaviour
     {
         Vector3 direccionCamara = cam.transform.forward;
 
-        // Buscar objetivos en la lista que están activos
         foreach (var objetivo in objetivos)
         {
-            if (objetivo != null && objetivo.activeInHierarchy) // Verificar que el objetivo esté activo
+            if (objetivo != null && objetivo.activeInHierarchy)
             {
                 float distancia = Vector3.Distance(cam.transform.position, objetivo.transform.position);
                 if (distancia <= distanciaMaxima)
@@ -63,7 +56,6 @@ public class Habilidad1 : MonoBehaviour
                     float angulo = Vector3.Angle(direccionCamara, direccionObjetivo);
                     if (angulo < rangoVisibilidad)
                     {
-                        MostrarDibujo(objetivo);
                         return true;
                     }
                 }
@@ -73,19 +65,4 @@ public class Habilidad1 : MonoBehaviour
         return false;
     }
 
-    void MostrarDibujo(GameObject objetivo)
-    {
-        if (objetivo.tag == "NPC")
-        {
-            habilidadImagen.sprite = imagenPersona;
-        }
-        else if (objetivo.tag == "cross")
-        {
-            habilidadImagen.sprite = imagenCruz;
-        }
-        else if(objetivo.tag == "Ritual")
-        {
-            habilidadImagen.sprite = imagenRitual;
-        }
-    }
 }

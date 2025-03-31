@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
     public int deadNpcs = 0;
     public List<GameObject> objectsToDeactivate;
     public List<GameObject> objectsToDeactivate2;
+    public GameObject possesion;
 
     void Start()
     {
@@ -29,6 +30,7 @@ public class GameController : MonoBehaviour
             {
                 obj.SetActive(false);
             }
+            possesion.SetActive(true);
         }
     }
 }

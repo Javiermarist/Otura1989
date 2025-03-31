@@ -1,14 +1,23 @@
 using UnityEngine;
+using System.Collections;
 
 public class StartingMission : MonoBehaviour
 {
     public DialogueController dialogueController;
-    
-    private void OnCollisionEnter(Collision collision)
+    public float delayBeforeDeactivation = 0.1f;
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            dialogueController.StartDialogue2();
+            dialogueController.GetComponent<DialogueController>().StartDialogue2();
+            StartCoroutine(DeactivateAfterDelay());
         }
+    }
+
+    private IEnumerator DeactivateAfterDelay()
+    {
+        yield return new WaitForSeconds(delayBeforeDeactivation);
+        gameObject.SetActive(false);
     }
 }
