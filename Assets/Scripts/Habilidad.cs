@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class Habilidad : MonoBehaviour
 {
     public KeyCode habilidadTecla = KeyCode.Tab;
-    public GameObject circuloUI, dibujoUI;
-    public float rangoVisibilidad = 30f;
-    public float distanciaMaxima = 10f;
+    public GameObject circuloUI;
+    public float rangoVisibilidad = 10f;
+    public float distanciaMaxima = 300000f;
     public List<GameObject> objetivos = new List<GameObject>();
     public Camera cam;
 
